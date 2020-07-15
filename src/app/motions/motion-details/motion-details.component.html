@@ -1,0 +1,45 @@
+<div *ngIf="selectedMotion$ | async as motion; else loading">
+  <div class="row">
+    <mat-card class="col-6 offset-3 mt-2 mb-2">
+      <mat-card-header>
+        <mat-card-title>Motion: {{ motion.text }}</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <mat-form-field class="col-12">
+          <mat-label>Description</mat-label>
+          <input matInput placeholder="Description" [(ngModel)]="motion.text" />
+        </mat-form-field>
+        <mat-slide-toggle
+          class="col-12"
+          labelPosition="before"
+          [checked]="motion.completed"
+          [disabled]="true"
+        >
+          Completed
+        </mat-slide-toggle>
+        <mat-form-field class="col-12">
+          <mat-label>Completed At</mat-label>
+          <input
+            matInput
+            placeholder="Completed At"
+            [value]="motion.completedAt"
+            [readonly]="true"
+          />
+        </mat-form-field>
+        <div class="button-right">
+          <button
+            mat-raised-button
+            color="primary"
+            (click)="saveHandler(motion)"
+          >
+            Save
+          </button>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>
+
+<ng-template #loading>
+  Loading stuff...
+</ng-template>
