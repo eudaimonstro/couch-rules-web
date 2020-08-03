@@ -36,5 +36,11 @@ import { FormsModule } from '@angular/forms';
     FormsModule,
     StoreModule.forFeature('motion', reducer),
   ],
+  exports: [
+    MotionListComponent,
+    MotionComponent,
+    MotionDetailsComponent,
+    MotionItemComponent,
+  ],
 })
 export class MotionsModule {}

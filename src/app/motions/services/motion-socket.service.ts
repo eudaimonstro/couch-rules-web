@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 export class MotionSocketService extends Socket {
   constructor() {
     super({
-      url: 'http://localhost:8988',
+      url: 'http://localhost:3000',
       options: { origin: '*', transport: ['websocket'] },
     });
   }

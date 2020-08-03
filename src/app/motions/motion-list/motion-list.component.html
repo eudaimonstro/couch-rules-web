@@ -1,17 +1,32 @@
 <div class="row">
-  <div class="col-md-5">
-    <h2>Motions</h2>
-    <ul class="list-group">
-      <li class="list-group-item" *ngFor="let motion of motions" (click)="selectMotion(motion)"
-        [class.active]="motion === selectedMotion">
-        {{motion.name}}
-      </li>
-    </ul>
-    <button class="btn btn-warning" (click)="createNewMotion()">New</button>
+  <mat-form-field class="col-6 offset-3" appearance="outline">
+    <mat-label>Motion description</mat-label>
+    <input #motionText matInput placeholder="What to do??" (keydown.enter)="addMotionHandler(motionText.value)" />
+  </mat-form-field>
+  <div class="col-2 pt-3">
+    <button mat-button color="primary" [disabled]="(motions$ | async).length === 0 || !itemSelected"
+      (click)="viewMotionHandler()">
+      VIEW
+    </button>
+    <button mat-button color="warn" [disabled]="(motions$ | async).length === 0 || !itemSelected"
+      (click)="completeMotionHandler()">
+      COMPLETE
+    </button>
   </div>
-  <div class="col-md-5 col-md-offset-2">
-    <app-motion-details [motion]="selectedMotion" [createHandler]="addMotion" [updateHandler]="updateMotion"
-      [deleteHandler]="deleteMotion">
-    </app-motion-details>
+</div>
+
+<div class="row">
+  <div class="col-6 offset-3">
+    <div *ngIf="(motions$ | async).length === 0">
+      <div class="text-center">
+        <p>No motion's added</p>
+      </div>
+    </div>
+    <div *ngIf="(motions$ | async).length > 0">
+      <mat-selection-list #items>
+        <mat-list-option *ngFor="let item of motions$ | async" [selected]="item.selected"
+          (click)="itemSelectedHandler(item)" [value]="item.id">{{ item.text }}</mat-list-option>
+      </mat-selection-list>
+    </div>
   </div>
 </div>

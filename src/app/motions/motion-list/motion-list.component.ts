@@ -14,6 +14,7 @@ import { MotionService } from '../services/motion.service';
 import * as fromMotion from '../store/motion.reducer';
 import * as MotionActions from '../store/motion.actions';
 import { Subject } from 'rxjs/internal/Subject';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-motion-list',
@@ -24,9 +25,11 @@ export class MotionListComponent implements OnInit, OnDestroy {
   @ViewChild('motionText') motionTextBox: ElementRef;
   private destroySubject$: Subject<void> = new Subject();
   public motions$: Observable<MotionModel[]>;
+  public itemSelected = false;
 
   constructor(
     private store: Store<fromMotion.MotionState>,
+    private snackBar: MatSnackBar,
     private router: Router,
     private motionService: MotionService
   ) {
@@ -70,6 +73,24 @@ export class MotionListComponent implements OnInit, OnDestroy {
         (motionItem) => motionItem.selected
       );
       this.router.navigate(['/motions/' + items[selectedMotionIndex].id]);
+    });
+  }
+
+  public completeMotionHandler(): void {
+    this.motions$.pipe(take(1)).subscribe((items: MotionModel[]) => {
+      const itemToUpdateIndex = items.findIndex(
+        (motionItem) => motionItem.selected
+      );
+      const itemToUpdate = items[itemToUpdateIndex];
+
+      this.motionService
+        .updateMotion(itemToUpdate.id, itemToUpdate)
+        .pipe(takeUntil(this.destroySubject$))
+        .subscribe(() => {
+          this.snackBar.open('Motion completed', 'Dismiss', {
+            duration: 2000,
+          });
+        });
     });
   }
 }

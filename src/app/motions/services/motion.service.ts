@@ -8,7 +8,7 @@ import { MotionModel } from '../../shared/models/motion';
 })
 export class MotionService {
   // TODO Replace with env variable
-  serviceUrl = 'http://localhost:3000';
+  serviceUrl = 'http://localhost:3000/api/v1';
   constructor(private http: HttpClient) {}
 
   public getMotions(): Observable<MotionModel[]> {

@@ -9,29 +9,15 @@
           <mat-label>Description</mat-label>
           <input matInput placeholder="Description" [(ngModel)]="motion.text" />
         </mat-form-field>
-        <mat-slide-toggle
-          class="col-12"
-          labelPosition="before"
-          [checked]="motion.completed"
-          [disabled]="true"
-        >
+        <mat-slide-toggle class="col-12" labelPosition="before" [disabled]="true">
           Completed
         </mat-slide-toggle>
         <mat-form-field class="col-12">
           <mat-label>Completed At</mat-label>
-          <input
-            matInput
-            placeholder="Completed At"
-            [value]="motion.completedAt"
-            [readonly]="true"
-          />
+          <input matInput placeholder="Completed At" [readonly]="true" />
         </mat-form-field>
         <div class="button-right">
-          <button
-            mat-raised-button
-            color="primary"
-            (click)="saveHandler(motion)"
-          >
+          <button mat-raised-button color="primary" (click)="saveHandler(motion)">
             Save
           </button>
         </div>

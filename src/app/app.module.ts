@@ -18,10 +18,11 @@ import { environment } from '../environments/environment';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { AuthModule } from './auth/auth.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HomeComponent } from './home/home/home.component';
 
 const config: SocketIoConfig = { url: 'http://localhost:8988', options: {} };
 @NgModule({
-  declarations: [AppComponent, AgendaComponent, AgendaItemComponent],
+  declarations: [AppComponent, AgendaComponent, AgendaItemComponent, HomeComponent],
   imports: [
     BrowserModule,
     FormsModule,
@@ -32,7 +33,7 @@ const config: SocketIoConfig = { url: 'http://localhost:8988', options: {} };
     MotionsModule,
     MeetingsModule,
     StoreModule.forRoot(appReducers),
-    StoreRouterConnectingModule,
+    StoreRouterConnectingModule.forRoot(),
     !environment.production ? StoreDevtoolsModule.instrument() : [],
     BrowserAnimationsModule,
   ],
