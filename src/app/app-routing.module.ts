@@ -4,8 +4,17 @@ import { Routes, RouterModule } from '@angular/router';
 import { MotionComponent } from './motions/motion/motion.component';
 import { MotionDetailsComponent } from './motions/motion-details/motion-details.component';
 import { MotionListComponent } from './motions/motion-list/motion-list.component';
+import { LoginComponent } from './login/login.component';
 
 const routes: Routes = [
+  {
+    path: '**',
+    redirectTo: '/login'
+  },
+  {
+    path: 'login',
+    component: LoginComponent,
+  },
   {
     path: 'motion',
     component: MotionComponent,

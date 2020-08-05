@@ -1,11 +1,11 @@
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/internal/Observable';
-import { UserModel } from '../../shared/models/user.model';
+import { UserModel } from '../../shared/models/user';
 
 @Injectable()
 export class AuthService {
-  private serviceUrl = `localhost:${process.env.PORT || 8080}`;
+  private serviceUrl = `localhost:8080`;
 
   constructor(private http: HttpClient) {}
 
