@@ -4,16 +4,18 @@ import { Routes, RouterModule } from '@angular/router';
 import { MotionComponent } from './motions/motion/motion.component';
 import { MotionDetailsComponent } from './motions/motion-details/motion-details.component';
 import { MotionListComponent } from './motions/motion-list/motion-list.component';
-import { LoginComponent } from './login/login.component';
+import { SignInComponent } from './auth/sign-in/sign-in.component';
+import { CreateAccountComponent } from './create-account/create-account.component';
+import { HomeComponent } from './home/home.component';
 
 const routes: Routes = [
   {
-    path: '**',
-    redirectTo: '/login'
+    path: 'home',
+    component: HomeComponent
   },
   {
-    path: 'login',
-    component: LoginComponent,
+    path: 'sign-in',
+    component: SignInComponent,
   },
   {
     path: 'motion',
@@ -29,6 +31,17 @@ const routes: Routes = [
     path: 'motion-list',
     component: MotionListComponent,
     data: { title: 'Motion List' }
+  },
+  {
+    path: 'account',
+    children: [{
+      path: 'create',
+      component: CreateAccountComponent
+    }]
+  },
+  {
+    path: '**',
+    redirectTo: '/login'
   }
 ];
 

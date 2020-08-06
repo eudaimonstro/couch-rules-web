@@ -34,10 +34,20 @@ import { MatCardModule } from '@angular/material/card';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatSelectModule } from '@angular/material/select';
 import { AuthService } from './auth/services/auth.service';
+import { CreateAccountComponent } from './create-account/create-account.component';
+import { ToolbarComponent } from './toolbar/toolbar.component';
 
 const config: SocketIoConfig = { url: 'http://localhost:8988', options: {} };
 @NgModule({
-  declarations: [AppComponent, AgendaComponent, AgendaItemComponent, HomeComponent, LoginComponent],
+  declarations: [
+    AppComponent,
+    AgendaComponent,
+    AgendaItemComponent,
+    HomeComponent,
+    LoginComponent,
+    CreateAccountComponent,
+    ToolbarComponent
+  ],
   imports: [
     BrowserModule,
     FormsModule,
